@@ -1,19 +1,9 @@
 import petl as etl, psycopg2 as pg, pymysql as mysql
-
-dbConfig = {
-    "source": "dbname=beta user=postgres password=pg host=localhost", 
-    "staging": "dbname=test user=postgres password=pg host=localhost",
-    "data_warehouse": { 
-        "host": "localhost",
-        "user": "root",
-        "password": "",
-        "database": "beta"
-    }
-}
+from config import dbConfig 
 
 SOURCE_DB_DBO = pg.connect(dbConfig["source"])
 
-STAGING_DB_DBO = pg.connect(dbConfig["source"])
+STAGING_DB_DBO = pg.connect(dbConfig["staging"])
 
 DW_DB_DBO = mysql.connect(
   host= dbConfig["data_warehouse"]["host"],
